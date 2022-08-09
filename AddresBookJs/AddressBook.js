@@ -296,3 +296,13 @@ function viewPersonsInACityOrState(city) {
     console.log(contact.toString())
   );
 }
+
+//UC10 Get count of contacts by city
+console.log("\n-----------------Count of Contacts By city------------");
+getCountByCityOrState("Bandits");
+function getCountByCityOrState(city) {
+  let count = AddressBook.filter((contact) => {
+    if (contact.city == city) return contact;
+  }).reduce((count) => count + 1, 0);
+  console.log("\nCount of people in " + city + " = " + count);
+}
