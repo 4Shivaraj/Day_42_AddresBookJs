@@ -118,7 +118,6 @@ class contact {
   }
 }
 
-//function to add contact
 function AddContact(
   firstName,
   lastName,
@@ -140,13 +139,22 @@ function AddContact(
       phoneNumber,
       email
     );
-    AddressBook.push(newcontact);
+    if (
+      AddressBook.find(
+        (person) =>
+          person.firstName == newcontact.firstName &&
+          person.lastName == newcontact.lastName
+      )
+    )
+      throw "Details you are entering already exists";
+    else {
+      AddressBook.push(newcontact);
+    }
   } catch (e) {
     console.error(e);
   }
 }
 
-//function to edit contact
 function EditContact(firstName, lastName, address, city, state) {
   AddressBook.filter(
     (contact) => contact.firstName == firstName && contact.lastName == lastName
@@ -157,14 +165,12 @@ function EditContact(firstName, lastName, address, city, state) {
   });
 }
 
-//function to delete contact
 function DeleteContact(firstName, lastName) {
   for (let index = 0; index < AddressBook.length; index++) {
     if (
       AddressBook[index].firstName == firstName &&
       AddressBook[index].lastName == lastName
     ) {
-      //splice method removes item from an array by taking index value
       AddressBook.splice(index, 1);
     }
   }
@@ -175,6 +181,17 @@ function Delete() {
   console.log("Hello, Welcome To Address Book Using Javascript!");
   //Adding contacts
   console.log("----------------Adding contact-----------------");
+  AddContact(
+    "Shivaraj",
+    "Krishnamurthy",
+    "Vijaynagar",
+    "Bangalore",
+    "Karnataka",
+    "567678",
+    "91 9898989898",
+    "Shivaraj@gmail.com"
+  );
+  //added same details again to check whether UC7 is working or not
   AddContact(
     "Shivaraj",
     "Krishnamurthy",
