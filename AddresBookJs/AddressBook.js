@@ -287,3 +287,12 @@ let addressBookCount = AddressBook.reduce(
   0
 );
 console.log("Count of address book contacts are : " + addressBookCount);
+
+//UC9 View person's by city or state
+console.log("\n -------------Contacts present in city-------------");
+viewPersonsInACityOrState("Bandits");
+function viewPersonsInACityOrState(city) {
+  AddressBook.filter((contact) => contact.city == city).forEach((contact) =>
+    console.log(contact.toString())
+  );
+}
