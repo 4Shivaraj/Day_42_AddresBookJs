@@ -181,7 +181,7 @@ function Delete() {
     "Vijaynagar",
     "Bangalore",
     "Karnataka",
-    "560079",
+    "567678",
     "91 9898989898",
     "Shivaraj@gmail.com"
   );
@@ -215,6 +215,16 @@ function Delete() {
     "91 7854567890",
     "rohan@gmail.com"
   );
+  AddContact(
+    "Ryan",
+    "Dharma",
+    "Bandish",
+    "Bandits",
+    "Jodhpur",
+    "532105",
+    "91 9876543210",
+    "ryan@gmail.com"
+  );
   //Printing Array
   AddressBook.forEach((contact) => console.log(contact.toString()));
   //Editing Contact
@@ -236,3 +246,10 @@ function Delete() {
 }
 let AddressBook = new Array();
 Delete();
+
+//UC6 finding out the size of array using reduce function
+let addressBookCount = AddressBook.reduce(
+  (count, _contact) => (count = count + 1),
+  0
+);
+console.log("Count of address book contacts are : " + addressBookCount);
