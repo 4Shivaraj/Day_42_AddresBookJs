@@ -315,3 +315,19 @@ let sortedArray = new Array();
 AddressBook.forEach((contact) => sortedArray.push(contact.toString()));
 sortedArray.sort();
 console.log(sortedArray);
+
+//UC12 - Sort By city state or zip
+var sortByCityArray = AddressBook;
+var sortByStateArray = AddressBook;
+var sortByZipArray = AddressBook;
+//localeCompare() method checks if a given string comes before,
+//after, or is same as other string in sort order.
+sortByCityArray.sort((a, b) => a.city.localeCompare(b.city));
+console.log("Contacts sorted by city:");
+sortByCityArray.forEach((contact) => console.log(contact.toString()));
+sortByStateArray.sort((a, b) => a.state.localeCompare(b.state));
+console.log("\nContacts sorted by state:");
+sortByStateArray.forEach((contact) => console.log(contact.toString()));
+sortByZipArray.sort((a, b) => a.zip.localeCompare(b.zip));
+console.log("\nContacts sorted by zip:");
+sortByZipArray.forEach((contact) => console.log(contact.toString()));
