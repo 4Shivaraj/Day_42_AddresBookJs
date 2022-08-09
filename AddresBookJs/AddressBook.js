@@ -1,5 +1,6 @@
 class contact {
-  //constructor
+  // constructor
+  // Spread operator used to provide multiple dynamic parameters to constructor
   constructor(...params) {
     this.firstName = params[0];
     this.lastName = params[1];
@@ -11,7 +12,7 @@ class contact {
     this.email = params[7];
   }
 
-  //getter setters
+  //getter and setter methods
   get firstName() {
     return this._firstName;
   }
@@ -97,26 +98,27 @@ class contact {
   //To string method for displaying contacts
   toString() {
     return (
-      "First Name: " +
+      "\nFirst Name: " +
       this.firstName +
-      " Last Name: " +
+      "\nLast Name: " +
       this.lastName +
-      " Address: " +
+      "\nAddress: " +
       this.address +
-      " City: " +
+      "\nCity: " +
       this.city +
-      " State: " +
+      "\nState: " +
       this.state +
-      " Zipcode: " +
+      "\nZipcode: " +
       this.zip +
-      " Phone Number: " +
+      "\nPhone Number: " +
       this.phoneNumber +
-      " email: " +
+      "\nEmail: " +
       this.email
     );
   }
 }
 
+//function to add contact
 function AddContact(
   firstName,
   lastName,
@@ -144,10 +146,35 @@ function AddContact(
   }
 }
 
-function Edit() {
+//function to edit contact
+function EditContact(firstName, lastName, address, city, state) {
+  AddressBook.filter(
+    (contact) => contact.firstName == firstName && contact.lastName == lastName
+  ).forEach((contact) => {
+    contact.address = address;
+    contact.city = city;
+    contact.state = state;
+  });
+}
+
+//function to delete contact
+function DeleteContact(firstName, lastName) {
+  for (let index = 0; index < AddressBook.length; index++) {
+    if (
+      AddressBook[index].firstName == firstName &&
+      AddressBook[index].lastName == lastName
+    ) {
+      //splice method removes item from an array by taking index value
+      AddressBook.splice(index, 1);
+    }
+  }
+}
+
+//UC 4,5 - Edit contact method , Delete contact method
+function Delete() {
   console.log("Hello, Welcome To Address Book Using Javascript!");
   //Adding contacts
-  console.log("-------------Adding contact-----------------");
+  console.log("----------------Adding contact-----------------");
   AddContact(
     "Shivaraj",
     "Krishnamurthy",
@@ -156,7 +183,7 @@ function Edit() {
     "Karnataka",
     "560079",
     "91 9898989898",
-    "ramya@gmail.com"
+    "Shivaraj@gmail.com"
   );
   AddContact(
     "Riya",
@@ -190,17 +217,22 @@ function Edit() {
   );
   //Printing Array
   AddressBook.forEach((contact) => console.log(contact.toString()));
-  //Editing Contact by name
+  //Editing Contact
   console.log("-------------Editing contact-----------------");
   AddressBook.filter(
     (contact) =>
       contact.firstName == "Shivaraj" && contact.lastName == "Krishnamurthy"
   ).forEach((contact) => {
-    contact.address = "BasaveshwarNagar";
+    contact.address = "DamohNaka";
     contact.city = "Bangalore";
     contact.state = "Karnataka";
   });
   AddressBook.forEach((contact) => console.log(contact.toString()));
+  //Deleting contact
+  console.log("-------------Deleting contact-----------------");
+  DeleteContact("Shivaraj", "Krishnamurthy");
+  console.log("Contact deleted successfully!");
+  AddressBook.forEach((contact) => console.log(contact.toString()));
 }
 let AddressBook = new Array();
-Edit();
+Delete();
