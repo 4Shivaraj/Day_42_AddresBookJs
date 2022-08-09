@@ -306,3 +306,12 @@ function getCountByCityOrState(city) {
   }).reduce((count) => count + 1, 0);
   console.log("\nCount of people in " + city + " = " + count);
 }
+
+//UC11 Sort the entries alphabetically
+console.log("-----------------Sorting Array By Names---------------");
+//creation of new array called as sorted array
+//so that sorted contacts will be stored in this array
+let sortedArray = new Array();
+AddressBook.forEach((contact) => sortedArray.push(contact.toString()));
+sortedArray.sort();
+console.log(sortedArray);
