@@ -65,7 +65,7 @@ class Contact {
   }
 
   get zip() {
-    return this._city;
+    return this._zip;
   }
   set zip(zip) {
     //regex for zip
@@ -99,7 +99,7 @@ class Contact {
   //To string method for displaying contacts
   toString() {
     return (
-      "FirstName: " +
+      "\nFirstName: " +
       this.firstName +
       "\nLastName: " +
       this.lastName +
@@ -119,18 +119,71 @@ class Contact {
   }
 }
 
+// UC 3 : New address book array to store contacts
+let addressBook = new Array();
 try {
+  console.log("Hello, Welcome To Address Book Using Javascript!");
   contact = new Contact(
     "Shivaraj",
     "Krishnamurthy",
     "Vijaynagar",
     "Bangalore",
     "Karnataka",
-    567678,
+    "560079",
     "91 9898989898",
-    "shivaraj.gowda@gmail.com"
+    "ramya@gmail.com"
   );
-  console.log(contact.toString());
+  //appends into array
+  addressBook.push(contact);
+  addressBook.push(
+    new Contact(
+      "Riya",
+      "Wooj",
+      "Nagarbhavi",
+      "Mangalore",
+      "Mumbai",
+      "588678",
+      "91 8765432345",
+      "riya@gmail.com"
+    )
+  );
+  addressBook.push(
+    new Contact(
+      "Disha",
+      "Madan",
+      "Graden",
+      "Gubbi",
+      "Andhra",
+      "593678",
+      "91 9842123456",
+      "disha@gmail.com"
+    )
+  );
+  addressBook.push(
+    new Contact(
+      "Rohan",
+      "Sharma",
+      "Bandish",
+      "Bandits",
+      "Rajasthan",
+      "532678",
+      "91 7854567890",
+      "rohan@gmail.com"
+    )
+  );
+  addressBook.push(
+    new Contact(
+      "Darshan",
+      "Yadav",
+      "Euphoria",
+      "Zendaya",
+      "ZacEffron",
+      "510236",
+      "91 8765432720",
+      "yadavdarshan@gmail.com"
+    )
+  );
+  addressBook.forEach((contact) => console.log(contact.toString()));
 } catch (e) {
   console.error(e);
 }
