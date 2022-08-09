@@ -1,7 +1,5 @@
-//UC1 - Create Contact class
-class Contact {
-  // constructor
-  // Spread operator used to provide multiple dynamic parameters to constructor
+class contact {
+  //constructor
   constructor(...params) {
     this.firstName = params[0];
     this.lastName = params[1];
@@ -13,12 +11,12 @@ class Contact {
     this.email = params[7];
   }
 
-  //getter and setter methods
+  //getter setters
   get firstName() {
     return this._firstName;
   }
   set firstName(firstName) {
-    //regex for first name
+    //regex for firstname
     let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
     if (nameRegex.test(firstName)) this._firstName = firstName;
     else throw "Invalid firstname";
@@ -28,7 +26,7 @@ class Contact {
     return this._lastName;
   }
   set lastName(lastName) {
-    //regex for last name
+    //regex for lastname
     let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
     if (nameRegex.test(lastName)) this._lastName = lastName;
     else throw "Invalid lastname";
@@ -79,7 +77,7 @@ class Contact {
   }
   set phoneNumber(phoneNumber) {
     //regex for phonenumber
-    let phoneNumberRegex = RegExp("^[0-9]{2}[ ]*[0-9]{10}$");
+    let phoneNumberRegex = RegExp("^([0-9]{2}[ ])?[6-9]{1}[0-9]{9}$");
     if (phoneNumberRegex.test(phoneNumber)) this._phoneNumber = phoneNumber;
     else throw "Invalid phone number";
   }
@@ -99,31 +97,58 @@ class Contact {
   //To string method for displaying contacts
   toString() {
     return (
-      "\nFirstName: " +
+      "First Name: " +
       this.firstName +
-      "\nLastName: " +
+      " Last Name: " +
       this.lastName +
-      "\nAddress : " +
+      " Address: " +
       this.address +
-      "\nCity : " +
+      " City: " +
       this.city +
-      "\nState : " +
+      " State: " +
       this.state +
-      "\nZip : " +
+      " Zipcode: " +
       this.zip +
-      "\nPhoneNumber : " +
+      " Phone Number: " +
       this.phoneNumber +
-      "\nEmail : " +
+      " email: " +
       this.email
     );
   }
 }
 
-// UC 3 : New address book array to store contacts
-let addressBook = new Array();
-try {
+function AddContact(
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  zip,
+  phoneNumber,
+  email
+) {
+  try {
+    let newcontact = new contact(
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      phoneNumber,
+      email
+    );
+    AddressBook.push(newcontact);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function Edit() {
   console.log("Hello, Welcome To Address Book Using Javascript!");
-  contact = new Contact(
+  //Adding contacts
+  console.log("-------------Adding contact-----------------");
+  AddContact(
     "Shivaraj",
     "Krishnamurthy",
     "Vijaynagar",
@@ -133,57 +158,49 @@ try {
     "91 9898989898",
     "ramya@gmail.com"
   );
-  //appends into array
-  addressBook.push(contact);
-  addressBook.push(
-    new Contact(
-      "Riya",
-      "Wooj",
-      "Nagarbhavi",
-      "Mangalore",
-      "Mumbai",
-      "588678",
-      "91 8765432345",
-      "riya@gmail.com"
-    )
+  AddContact(
+    "Riya",
+    "Wooj",
+    "Nagarbhavi",
+    "Mangalore",
+    "Mumbai",
+    "588678",
+    "91 8765432345",
+    "riya@gmail.com"
   );
-  addressBook.push(
-    new Contact(
-      "Disha",
-      "Madan",
-      "Graden",
-      "Gubbi",
-      "Andhra",
-      "593678",
-      "91 9842123456",
-      "disha@gmail.com"
-    )
+  AddContact(
+    "Disha",
+    "Madan",
+    "Graden",
+    "Gubbi",
+    "Andhra",
+    "593678",
+    "91 9842123456",
+    "disha@gmail.com"
   );
-  addressBook.push(
-    new Contact(
-      "Rohan",
-      "Sharma",
-      "Bandish",
-      "Bandits",
-      "Rajasthan",
-      "532678",
-      "91 7854567890",
-      "rohan@gmail.com"
-    )
+  AddContact(
+    "Rohan",
+    "Sharma",
+    "Bandish",
+    "Bandits",
+    "Rajasthan",
+    "532678",
+    "91 7854567890",
+    "rohan@gmail.com"
   );
-  addressBook.push(
-    new Contact(
-      "Darshan",
-      "Yadav",
-      "Euphoria",
-      "Zendaya",
-      "ZacEffron",
-      "510236",
-      "91 8765432720",
-      "yadavdarshan@gmail.com"
-    )
-  );
-  addressBook.forEach((contact) => console.log(contact.toString()));
-} catch (e) {
-  console.error(e);
+  //Printing Array
+  AddressBook.forEach((contact) => console.log(contact.toString()));
+  //Editing Contact by name
+  console.log("-------------Editing contact-----------------");
+  AddressBook.filter(
+    (contact) =>
+      contact.firstName == "Shivaraj" && contact.lastName == "Krishnamurthy"
+  ).forEach((contact) => {
+    contact.address = "BasaveshwarNagar";
+    contact.city = "Bangalore";
+    contact.state = "Karnataka";
+  });
+  AddressBook.forEach((contact) => console.log(contact.toString()));
 }
+let AddressBook = new Array();
+Edit();
